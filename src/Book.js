@@ -5,8 +5,8 @@ import './App.css'
 class Book extends React.Component {
 
   render() {
-  	console.log("book component"); 
-    console.log(this.props);
+  	//console.log("book component"); 
+    //console.log(this.props);
     return(
 
         <div className="book">
