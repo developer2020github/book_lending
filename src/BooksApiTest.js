@@ -93,7 +93,6 @@ function TrySettingShelf(){
     id: "nggnmAEACAAJ", 
   }
 
-
   TryGettingOneBook(); 
 
   let updatedBook  = BooksAPI.update(bookToUpdate, "read"); 
@@ -103,6 +102,8 @@ function TrySettingShelf(){
   TryGettingOneBook();
 
 }
+
+
 
 function TestBooksApi() {
     console.log("hello world from book api test!");
