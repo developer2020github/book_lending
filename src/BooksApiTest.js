@@ -112,4 +112,5 @@ function TestBooksApi() {
     TrySettingShelf(); 
 }
 
-export default TestBooksApi;
+export  {TestBooksApi};
+export  {bookObjectExample}; 
