@@ -2,6 +2,11 @@ import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 
+class Book extends React.Component {
+
+}
+
+
 class BooksApp extends React.Component {
   state = {
     /**
