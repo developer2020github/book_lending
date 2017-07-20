@@ -112,5 +112,15 @@ function TestBooksApi() {
     TrySettingShelf(); 
 }
 
+function getBooksList(sizeOfList){
+    let books = []; 
+    for (let i = 0; i<sizeOfList; i++){
+        books.push(bookObjectExample); 
+    }
+
+    return books; 
+}
+
+export  {getBooksList}; 
 export  {TestBooksApi};
 export  {bookObjectExample}; 

@@ -7,12 +7,14 @@ import BookShelf from './BookShelf'
 
 import { bookObjectExample } from './BooksApiTest'
 
+import { getBooksList } from './BooksApiTest'
+
 
 
 class BooksApp extends React.Component {
   state = {
 
-    books: [], 
+    //books: [], 
     /**
      * TODO: Instead of using this state variable to keep track of which page
      * we're on, use the URL in the browser's address bar. This will ensure that
@@ -25,6 +27,8 @@ class BooksApp extends React.Component {
 
 
   render() {
+    let books2  = getBooksList(2); 
+    let books3 = getBooksList(3); 
 
     return (
       <div className="app">
@@ -56,9 +60,9 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <BookShelf shelfTitle = 'Currently Reading'/>
-                <BookShelf shelfTitle = 'Want to Read'/>
-                <BookShelf shelfTitle = 'Read'/>
+                <BookShelf books = {books2} shelfTitle = 'Currently Reading'/>
+                <BookShelf books = {books3} shelfTitle = 'Want to Read'/>
+                <BookShelf books = {books2} shelfTitle = 'Read'/>
               </div>
             </div>
             <div className="open-search">
