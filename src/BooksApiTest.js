@@ -112,12 +112,13 @@ function TestBooksApi() {
     TrySettingShelf(); 
 }
 
-function createBooksListForAShelf(sizeOfList, shelf){
+function createBooksListForAShelf(sizeOfList, shelf, s){
     let books = []; 
     for (let i = 0; i<sizeOfList; i++){
         books.push(Object.assign({}, bookObjectExample)); 
         books[i].shelf = shelf; 
         books[i].id = i; 
+        books[i].title = books[i].title + "_" +  s + "_" + parseInt(i); 
 
     }
  
@@ -125,9 +126,9 @@ function createBooksListForAShelf(sizeOfList, shelf){
 }
 
 function createBooksList(){
-  return [... createBooksListForAShelf(2, Constants.SHELVES.WANT_TO_READ), 
-          ... createBooksListForAShelf(3,  Constants.SHELVES.CURRENTLY_READING),
-          ... createBooksListForAShelf(5,  Constants.SHELVES.READ)]; 
+  return [... createBooksListForAShelf(2, Constants.SHELVES.CURRENTLY_READING, "a"), 
+          ... createBooksListForAShelf(3,  Constants.SHELVES.WANT_TO_READ, "b"),
+          ... createBooksListForAShelf(5,  Constants.SHELVES.READ, "c")]; 
 }
 
 export  {createBooksList}; 

@@ -1,6 +1,7 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import * as Constants from './Constants'
+import * as Utils from './Utils'
 
 import './App.css'
 
@@ -12,6 +13,10 @@ import * as BooksApiTest from './BooksApiTest'
 
 
 class BooksApp extends React.Component {
+  constructor(){
+    super(); 
+    this.state.books = BooksApiTest.createBooksList(); 
+  }
   state = {
 
     books: [], 
@@ -24,12 +29,27 @@ class BooksApp extends React.Component {
     showSearchPage: false
   }
 
-  updateBookState(book){
+  updateBookShelf = (bookID, newShelf)=>{
 
+     function updateBook(book){
+          if (book.id===bookID){
+            if (Utils.isValidShelf(newShelf)){
+              book.shelf = newShelf; 
+             }
+          }
+      }
+
+      function updateState(oldState){
+        
+         return {books: oldState.books.map(updateBook)} 
+      }
+
+     this.setState(updateState); 
+      
   }
 
   render() {
-    this.state.books = BooksApiTest.createBooksList(); 
+    
 
     return (
       <div className="app">
