@@ -37,6 +37,9 @@ componentDidMount(){
                 books: allBooks
             }))}
 
+closeSearch  = () => this.setState({ showSearchPage: false }); 
+
+
 updateBookShelf = (bookID, newShelf)=>{
 
      function updateBook(book){
@@ -65,7 +68,7 @@ updateBookShelf = (bookID, newShelf)=>{
         {this.state.showSearchPage ? (
           <div className="search-books">
             <div className="search-books-bar">
-              <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
+              <a className="close-search" onClick={this.closeSearch}>Close</a>
               <div className="search-books-input-wrapper">
                 {/* 
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -79,9 +82,9 @@ updateBookShelf = (bookID, newShelf)=>{
                 
               </div>
             </div>
-            <div className="search-books-results">
+          
               <BookSearchResults/>
-            </div>
+     
           </div>
         ) : (
           <div className="list-books">
