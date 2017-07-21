@@ -24,7 +24,9 @@ class BooksApp extends React.Component {
     showSearchPage: false
   }
 
- 
+  updateBookState(book){
+
+  }
 
   render() {
     this.state.books = BooksApiTest.createBooksList(); 
@@ -58,9 +60,9 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <BookShelf books = {this.state.books.filter( book=> book.shelf===Constants.SHELVES.CURRENTLY_READING)} shelfTitle = 'Currently Reading'/>
-                <BookShelf books = {this.state.books.filter( book=> book.shelf===Constants.SHELVES.WANT_TO_READ)} shelfTitle = 'Want to Read'/>
-                <BookShelf books = {this.state.books.filter( book=> book.shelf===Constants.SHELVES.READ)} shelfTitle = 'Read'/>
+                <BookShelf key={Constants.SHELVES.CURRENTLY_READING} books = {this.state.books.filter( book=> book.shelf===Constants.SHELVES.CURRENTLY_READING)} shelfTitle = 'Currently Reading'/>
+                <BookShelf key={Constants.SHELVES.WANT_TO_READ} books = {this.state.books.filter( book=> book.shelf===Constants.SHELVES.WANT_TO_READ)} shelfTitle = 'Want to Read'/>
+                <BookShelf key={Constants.SHELVES.READ} books = {this.state.books.filter( book=> book.shelf===Constants.SHELVES.READ)} shelfTitle = 'Read'/>
               </div>
             </div>
             <div className="open-search">

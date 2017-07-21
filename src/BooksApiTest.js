@@ -117,6 +117,7 @@ function createBooksListForAShelf(sizeOfList, shelf){
     for (let i = 0; i<sizeOfList; i++){
         books.push(Object.assign({}, bookObjectExample)); 
         books[i].shelf = shelf; 
+        books[i].id = i; 
 
     }
  
