@@ -37,6 +37,7 @@ class BooksApp extends React.Component {
               book.shelf = newShelf; 
              }
           }
+          return book; 
       }
 
       function updateState(oldState){
@@ -85,15 +86,21 @@ class BooksApp extends React.Component {
 
                 <BookShelf key={Constants.SHELVES.CURRENTLY_READING} 
                  books = {this.state.books.filter( book=> book.shelf===Constants.SHELVES.CURRENTLY_READING)} 
-                 shelfName ={Constants.SHELF_NAMES[Constants.SHELVES.CURRENTLY_READING]}/>
+                 shelfName ={Constants.SHELF_NAMES[Constants.SHELVES.CURRENTLY_READING]}
+                 updateBookShelf = {this.updateBookShelf}
+                 />
 
                 <BookShelf key={Constants.SHELVES.WANT_TO_READ} 
                  books = {this.state.books.filter( book=> book.shelf===Constants.SHELVES.WANT_TO_READ)} 
-                 shelfName ={Constants.SHELF_NAMES[Constants.SHELVES.WANT_TO_READ]}/>
+                 shelfName ={Constants.SHELF_NAMES[Constants.SHELVES.WANT_TO_READ]}
+                  updateBookShelf = {this.updateBookShelf}
+                 />
 
                 <BookShelf key={Constants.SHELVES.READ} 
                  books = {this.state.books.filter( book=> book.shelf===Constants.SHELVES.READ)} 
-                 shelfName ={Constants.SHELF_NAMES[Constants.SHELVES.READ]}/>
+                 shelfName ={Constants.SHELF_NAMES[Constants.SHELVES.READ]}
+                 updateBookShelf = {this.updateBookShelf}
+                 />
 
               </div>
 

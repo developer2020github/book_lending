@@ -4,3 +4,5 @@ import * as Constants from './Constants'
 function isValidShelf(shelf){
 	return Object.values(Constants.SHELVES).indexOf(shelf) > -1
 }
+
+export {isValidShelf}; 
