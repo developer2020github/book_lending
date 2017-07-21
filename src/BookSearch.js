@@ -20,12 +20,37 @@ class BookSearch extends React.Component {
     }
 
 	state = {
-		foundBooks: []
+		foundBooks: [], 
+		query: ""
 	}
+
+	handleInputQuery = (e)=>{
+		//console.log("query input event"); 
+		//console.log(e); 
+		//console.log(e.target.value); 
+		this.setState({query: e.target.value.trim()}); 
+		this.searchForBooks(); 
+
+	}
+    
+    searchForBooks=()=>{
+      if (this.state.query ==="") {
+      	this.setState({foundBooks: []})
+      }else{
+      	    BooksAPI.search(this.state.query, 10).then(allBooks => this.setState({
+                foundBooks: allBooks
+            }))
+      }
+    }
 
 	updateBookShelf = (bookID, newShelf)=>{}
 
     render() {
+    	console.log(this.state.foundBooks); 
+    	for (let i = 0; i<this.state.foundBooks.length; i++){
+    		console.log(i); 
+    		console.log(this.state.foundBooks[i].authors); 
+    	}
     
     return ( 
 
@@ -41,7 +66,7 @@ class BookSearch extends React.Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-                <input type="text" placeholder="Search by title or author"/>
+                <input type="text" placeholder="Search by title or author" onChange={this.handleInputQuery}/>
                 
               </div>
             </div>
