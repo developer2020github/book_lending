@@ -13,10 +13,11 @@ import * as BooksApiTest from './BooksApiTest'
 
 
 class BooksApp extends React.Component {
-  constructor(){
+  /*constructor(){
     super(); 
-    this.state.books = BooksApiTest.createBooksList(); 
-  }
+    this.state.books = BooksApiTest.createBooksList(); //this can be used for local testing
+  }*/
+  
   state = {
 
     books: [], 
@@ -28,6 +29,15 @@ class BooksApp extends React.Component {
      */
     showSearchPage: false
   }
+componentDidMount() {
+    BooksAPI.getAll().then(allBooks => this.setState({
+                books: allBooks
+            }
+
+        )
+
+    )
+}
 
   updateBookShelf = (bookID, newShelf)=>{
 
