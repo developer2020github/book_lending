@@ -22,9 +22,9 @@ class Book extends React.Component {
                             <div className="book-shelf-changer">
                               <select onChange = {function(e){console.log("hello from book change shelf"); console.log(e.target.value)}}>
                                 <option value="none" disabled>Move to...</option>
-                                <option value={Constants.SHELVES.CURRENTLY_READING}>Currently Reading</option>
-                                <option value={Constants.SHELVES.WANT_TO_READ}>Want to Read</option>
-                                <option value={Constants.SHELVES.READ}>Read</option>
+                                <option value={Constants.SHELVES.CURRENTLY_READING}>{Constants.SHELF_NAMES[Constants.SHELVES.CURRENTLY_READING]}</option>
+                                <option value={Constants.SHELVES.WANT_TO_READ}>{Constants.SHELF_NAMES[Constants.SHELVES.WANT_TO_READ]}</option>
+                                <option value={Constants.SHELVES.READ}>{Constants.SHELF_NAMES[Constants.SHELVES.READ]}</option>
                                 <option value="none">None</option>
                               </select>
                             </div>

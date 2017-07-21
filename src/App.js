@@ -30,6 +30,7 @@ class BooksApp extends React.Component {
 
   render() {
     this.state.books = BooksApiTest.createBooksList(); 
+
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -58,13 +59,26 @@ class BooksApp extends React.Component {
             <div className="list-books-title">
               <h1>MyReads</h1>
             </div>
+
             <div className="list-books-content">
               <div>
-                <BookShelf key={Constants.SHELVES.CURRENTLY_READING} books = {this.state.books.filter( book=> book.shelf===Constants.SHELVES.CURRENTLY_READING)} shelfTitle = 'Currently Reading'/>
-                <BookShelf key={Constants.SHELVES.WANT_TO_READ} books = {this.state.books.filter( book=> book.shelf===Constants.SHELVES.WANT_TO_READ)} shelfTitle = 'Want to Read'/>
-                <BookShelf key={Constants.SHELVES.READ} books = {this.state.books.filter( book=> book.shelf===Constants.SHELVES.READ)} shelfTitle = 'Read'/>
+
+                <BookShelf key={Constants.SHELVES.CURRENTLY_READING} 
+                 books = {this.state.books.filter( book=> book.shelf===Constants.SHELVES.CURRENTLY_READING)} 
+                 shelfName ={Constants.SHELF_NAMES[Constants.SHELVES.CURRENTLY_READING]}/>
+
+                <BookShelf key={Constants.SHELVES.WANT_TO_READ} 
+                 books = {this.state.books.filter( book=> book.shelf===Constants.SHELVES.WANT_TO_READ)} 
+                 shelfName ={Constants.SHELF_NAMES[Constants.SHELVES.WANT_TO_READ]}/>
+
+                <BookShelf key={Constants.SHELVES.READ} 
+                 books = {this.state.books.filter( book=> book.shelf===Constants.SHELVES.READ)} 
+                 shelfName ={Constants.SHELF_NAMES[Constants.SHELVES.READ]}/>
+
               </div>
+
             </div>
+
             <div className="open-search">
               <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
             </div>
