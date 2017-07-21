@@ -1,6 +1,6 @@
 /* this module is for API testing */ 
 import * as BooksAPI from './BooksAPI'
-
+import * as Constants from './Constants'
 
 //this an example of book object returned by books API 
 let bookObjectExample  = 
@@ -112,15 +112,24 @@ function TestBooksApi() {
     TrySettingShelf(); 
 }
 
-function getBooksList(sizeOfList){
+function createBooksListForAShelf(sizeOfList, shelf){
     let books = []; 
     for (let i = 0; i<sizeOfList; i++){
-        books.push(bookObjectExample); 
-    }
+        books.push(Object.assign({}, bookObjectExample)); 
+        books[i].shelf = shelf; 
 
+    }
+ 
     return books; 
 }
 
-export  {getBooksList}; 
+function createBooksList(){
+  return [... createBooksListForAShelf(2, Constants.SHELVES.WANT_TO_READ), 
+          ... createBooksListForAShelf(3,  Constants.SHELVES.CURRENTLY_READING),
+          ... createBooksListForAShelf(5,  Constants.SHELVES.READ)]; 
+}
+
+export  {createBooksList}; 
+export  {createBooksListForAShelf}; 
 export  {TestBooksApi};
 export  {bookObjectExample}; 

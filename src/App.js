@@ -1,20 +1,20 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
+import * as Constants from './Constants'
+
 import './App.css'
 
 import Book from './Book'
 import BookShelf from './BookShelf'
 
-import { bookObjectExample } from './BooksApiTest'
-
-import { getBooksList } from './BooksApiTest'
+import * as BooksApiTest from './BooksApiTest'
 
 
 
 class BooksApp extends React.Component {
   state = {
 
-    //books: [], 
+    books: [], 
     /**
      * TODO: Instead of using this state variable to keep track of which page
      * we're on, use the URL in the browser's address bar. This will ensure that
@@ -24,12 +24,10 @@ class BooksApp extends React.Component {
     showSearchPage: false
   }
 
-
+ 
 
   render() {
-    let books2  = getBooksList(2); 
-    let books3 = getBooksList(3); 
-
+    this.state.books = BooksApiTest.createBooksList(); 
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -60,9 +58,9 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <BookShelf books = {books2} shelfTitle = 'Currently Reading'/>
-                <BookShelf books = {books3} shelfTitle = 'Want to Read'/>
-                <BookShelf books = {books2} shelfTitle = 'Read'/>
+                <BookShelf books = {this.state.books.filter( book=> book.shelf===Constants.SHELVES.CURRENTLY_READING)} shelfTitle = 'Currently Reading'/>
+                <BookShelf books = {this.state.books.filter( book=> book.shelf===Constants.SHELVES.WANT_TO_READ)} shelfTitle = 'Want to Read'/>
+                <BookShelf books = {this.state.books.filter( book=> book.shelf===Constants.SHELVES.READ)} shelfTitle = 'Read'/>
               </div>
             </div>
             <div className="open-search">

@@ -19,7 +19,6 @@ class BookShelf extends React.Component{
                         return <li> <Book bookData = {book}/> </li>; 
                       })}
 
-
                     </ol>
 
                   </div>
