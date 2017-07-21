@@ -17,7 +17,7 @@ class BooksApp extends React.Component {
     super(); 
     this.state.books = BooksApiTest.createBooksList(); //this can be used for local testing
   }*/
-  
+
   state = {
 
     books: [], 
@@ -29,22 +29,20 @@ class BooksApp extends React.Component {
      */
     showSearchPage: false
   }
-componentDidMount() {
+
+
+componentDidMount(){
     BooksAPI.getAll().then(allBooks => this.setState({
                 books: allBooks
-            }
+            }))}
 
-        )
-
-    )
-}
-
-  updateBookShelf = (bookID, newShelf)=>{
+updateBookShelf = (bookID, newShelf)=>{
 
      function updateBook(book){
           if (book.id===bookID){
             if (Utils.isValidShelf(newShelf)){
               book.shelf = newShelf; 
+              BooksAPI.update({id: bookID}, newShelf); 
              }
           }
           return book; 
@@ -55,8 +53,7 @@ componentDidMount() {
          return {books: oldState.books.map(updateBook)} 
       }
 
-     this.setState(updateState); 
-      
+     this.setState(updateState);    
   }
 
   render() {
