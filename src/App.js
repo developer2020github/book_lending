@@ -7,6 +7,7 @@ import './App.css'
 
 import Book from './Book'
 import BookShelf from './BookShelf'
+import BookSearchResults from './BookSearchResults'
 
 import * as BooksApiTest from './BooksApiTest'
 
@@ -27,7 +28,7 @@ class BooksApp extends React.Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    showSearchPage: false
+    showSearchPage: true
   }
 
 
@@ -79,7 +80,7 @@ updateBookShelf = (bookID, newShelf)=>{
               </div>
             </div>
             <div className="search-books-results">
-              <ol className="books-grid"></ol>
+              <BookSearchResults/>
             </div>
           </div>
         ) : (

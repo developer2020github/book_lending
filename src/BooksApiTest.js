@@ -1,4 +1,6 @@
-/* this module is for API testing */ 
+/* this module is for exploration of API. 
+   It also contains helper functions to facilitate local testing. 
+*/
 import * as BooksAPI from './BooksAPI'
 import * as Constants from './Constants'
 
@@ -88,7 +90,7 @@ function TrySettingShelf(){
 //book: <Object> containing at minimum an id attribute
 //shelf: <String> contains one of ["wantToRead", "currentlyReading", "read"]
 //Returns a Promise which resolves to a JSON object containing the response data of the POST request
-  console.log("trying to set shelve"); 
+  console.log("trying to set shelf"); 
   let bookToUpdate= {
     id: "nggnmAEACAAJ", 
   }
@@ -104,12 +106,29 @@ function TrySettingShelf(){
 }
 
 
+function trySearchingForBooks(){
+  let query = "Tol"; 
 
+
+  let bookSearchPromise  = BooksAPI.search(query, 5); 
+
+
+  bookSearchPromise.then(function(allFoundBooks){
+        console.log("books search promise resolved"); 
+        //this logs one book object as per one above bookObjectExample
+        console.log(allFoundBooks); 
+
+    }, function(err){
+        console.log("error, no data found for this query"); 
+    }); 
+
+}
 function TestBooksApi() {
     console.log("hello world from book api test!");
-    TryGettingAllBooks();
+    trySearchingForBooks(); 
+    //TryGettingAllBooks();
     //TryGettingOneBook()
-    TrySettingShelf(); 
+    //TrySettingShelf(); 
 }
 
 function createBooksListForAShelf(sizeOfList, shelf, s){
@@ -124,6 +143,8 @@ function createBooksListForAShelf(sizeOfList, shelf, s){
  
     return books; 
 }
+
+
 
 function createBooksList(){
   return [... createBooksListForAShelf(2, Constants.SHELVES.CURRENTLY_READING, "a"), 
