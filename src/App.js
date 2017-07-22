@@ -1,3 +1,15 @@
+//========================================================
+//My reads: book tracking application 
+//2017
+//Author:  developer2020 
+//e-mail:  dev276236@gmail.com
+//========================================================
+
+//========================================================================================
+//Main module. 
+//Defines the root React component. 
+//========================================================================================
+
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import * as Constants from './Constants'

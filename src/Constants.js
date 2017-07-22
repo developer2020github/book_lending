@@ -1,3 +1,14 @@
+//========================================================
+//My reads: book tracking application 
+//2017
+//Author:  developer2020 
+//e-mail:  dev276236@gmail.com
+//========================================================
+
+//========================================================================================
+//This module contains definitions of constants used across the application. 
+//========================================================================================
+
 const SHELVES = {
 	WANT_TO_READ: 'wantToRead', 
 	CURRENTLY_READING: "currentlyReading", 

@@ -1,3 +1,15 @@
+//========================================================
+//My reads: book tracking application 
+//2017
+//Author:  developer2020 
+//e-mail:  dev276236@gmail.com
+//========================================================
+
+//========================================================================================
+//This module defines a book component. It represents view of a single book 
+//and the drop down menu that allows to change book status. 
+//========================================================================================
+
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
@@ -10,14 +22,13 @@ class Book extends React.Component {
   }
 
   getFormattedAuthors=()=>{
-    //turns our not all books have Authors property, so attempt to format it would cause an error. 
+    //turns our not all books have Authors property, so an attempt to format it would cause an error. 
     //This function will take care of this and return either empty string or list of authors as  a string
     if(this.props.bookData.hasOwnProperty('authors')){
       return this.props.bookData.authors.join(' '); 
     }else{
       return ''; 
     }
-
   }
 
   render() {

@@ -1,3 +1,14 @@
+//========================================================
+//My reads: book tracking application 
+//2017
+//Author:  developer2020 
+//e-mail:  dev276236@gmail.com
+//========================================================
+
+//========================================================================================
+//This module represents a book shelf - a set of books that belong to same category
+//========================================================================================
+
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'

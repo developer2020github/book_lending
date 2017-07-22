@@ -1,6 +1,17 @@
-/* this module is for exploration of API. 
-   It also contains helper functions to facilitate local testing. 
-*/
+//========================================================
+//My reads: book tracking application 
+//2017
+//Author:  developer2020 
+//e-mail:  dev276236@gmail.com
+//========================================================
+
+//========================================================================================
+//This module was created for exploration of API. 
+//It also contains helper functions and a locally-defined copy of a book object
+//formatted exactly same way as book objects returned by the API
+//to facilitate development and local testing. 
+//========================================================================================
+
 import * as BooksAPI from './BooksAPI'
 import * as Constants from './Constants'
 
