@@ -31,15 +31,19 @@ import BookSearch from './BookSearch'
 
 
 class BooksApp extends React.Component {
-  /*constructor(){
+  constructor(){
     super(); 
-    this.state.books = BooksApiTest.createBooksList(); //this can be used for local testing
-  }*/
+    this.validShelves = [Constants.SHELVES.CURRENTLY_READING, 
+                         Constants.SHELVES.WANT_TO_READ, 
+                         Constants.SHELVES.READ]; 
+
+    //this.state.books = BooksApiTest.createBooksList(); //this can be used for local testing
+  }
   state = {
 
     books: [], 
   
-    showSearchPage: true
+    showSearchPage: false
   }
 
 
@@ -72,7 +76,7 @@ updateBookShelf = (bookID, newShelf)=>{
   }
 
   render() {
-    
+
 
     return (
       <div className="app">
@@ -88,23 +92,13 @@ updateBookShelf = (bookID, newShelf)=>{
             <div className="list-books-content">
               <div>
 
-                <BookShelf key={Constants.SHELVES.CURRENTLY_READING} 
-                 books={this.state.books.filter( book=> book.shelf===Constants.SHELVES.CURRENTLY_READING)} 
-                 shelfName={Constants.SHELF_NAMES[Constants.SHELVES.CURRENTLY_READING]}
-                 updateBookShelf={this.updateBookShelf}
-                 />
-
-                <BookShelf key={Constants.SHELVES.WANT_TO_READ} 
-                 books={this.state.books.filter( book=> book.shelf===Constants.SHELVES.WANT_TO_READ)} 
-                 shelfName={Constants.SHELF_NAMES[Constants.SHELVES.WANT_TO_READ]}
-                 updateBookShelf={this.updateBookShelf}
-                 />
-
-                <BookShelf key={Constants.SHELVES.READ} 
-                 books={this.state.books.filter( book=> book.shelf===Constants.SHELVES.READ)} 
-                 shelfName={Constants.SHELF_NAMES[Constants.SHELVES.READ]}
-                 updateBookShelf={this.updateBookShelf}
-                 />
+                {this.validShelves.map(
+                        (shelf)=>{
+                        return <BookShelf key={shelf} 
+                        books={this.state.books.filter( book=> book.shelf===shelf)} 
+                        shelfName={Constants.SHELF_NAMES[shelf]}
+                        updateBookShelf={this.updateBookShelf}/>}
+               )}
 
               </div>
 
