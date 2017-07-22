@@ -5,12 +5,17 @@ import * as Utils from './Utils'
 
 import './App.css'
 
-import Book from './Book'
 import BookShelf from './BookShelf'
 import BookSearch from './BookSearch'
 
-import * as BooksApiTest from './BooksApiTest'
+//import * as BooksApiTest from './BooksApiTest'
 
+  /**
+     * TODO: Instead of using  state variable to keep track of which page
+     * we're on, use the URL in the browser's address bar. This will ensure that
+     * users can use the browser's back and forward buttons to navigate between
+     * pages, as well as provide a good URL they can bookmark and share.
+    */
 
 
 class BooksApp extends React.Component {
@@ -18,16 +23,10 @@ class BooksApp extends React.Component {
     super(); 
     this.state.books = BooksApiTest.createBooksList(); //this can be used for local testing
   }*/
-
   state = {
 
     books: [], 
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
+  
     showSearchPage: true
   }
 
@@ -66,7 +65,7 @@ updateBookShelf = (bookID, newShelf)=>{
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <BookSearch closeSearch = {this.closeSearch}/>
+          <BookSearch closeSearch={this.closeSearch}/>
     
         ) : (
           <div className="list-books">
@@ -78,21 +77,21 @@ updateBookShelf = (bookID, newShelf)=>{
               <div>
 
                 <BookShelf key={Constants.SHELVES.CURRENTLY_READING} 
-                 books = {this.state.books.filter( book=> book.shelf===Constants.SHELVES.CURRENTLY_READING)} 
-                 shelfName ={Constants.SHELF_NAMES[Constants.SHELVES.CURRENTLY_READING]}
-                 updateBookShelf = {this.updateBookShelf}
+                 books={this.state.books.filter( book=> book.shelf===Constants.SHELVES.CURRENTLY_READING)} 
+                 shelfName={Constants.SHELF_NAMES[Constants.SHELVES.CURRENTLY_READING]}
+                 updateBookShelf={this.updateBookShelf}
                  />
 
                 <BookShelf key={Constants.SHELVES.WANT_TO_READ} 
-                 books = {this.state.books.filter( book=> book.shelf===Constants.SHELVES.WANT_TO_READ)} 
-                 shelfName ={Constants.SHELF_NAMES[Constants.SHELVES.WANT_TO_READ]}
-                  updateBookShelf = {this.updateBookShelf}
+                 books={this.state.books.filter( book=> book.shelf===Constants.SHELVES.WANT_TO_READ)} 
+                 shelfName={Constants.SHELF_NAMES[Constants.SHELVES.WANT_TO_READ]}
+                 updateBookShelf={this.updateBookShelf}
                  />
 
                 <BookShelf key={Constants.SHELVES.READ} 
-                 books = {this.state.books.filter( book=> book.shelf===Constants.SHELVES.READ)} 
-                 shelfName ={Constants.SHELF_NAMES[Constants.SHELVES.READ]}
-                 updateBookShelf = {this.updateBookShelf}
+                 books={this.state.books.filter( book=> book.shelf===Constants.SHELVES.READ)} 
+                 shelfName={Constants.SHELF_NAMES[Constants.SHELVES.READ]}
+                 updateBookShelf={this.updateBookShelf}
                  />
 
               </div>
