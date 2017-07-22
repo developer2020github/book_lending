@@ -46,11 +46,11 @@ class BookSearch extends React.Component {
 	updateBookShelf = (bookID, newShelf)=>{}
 
     render() {
-    	console.log(this.state.foundBooks); 
-    	for (let i = 0; i<this.state.foundBooks.length; i++){
-    		console.log(i); 
-    		console.log(this.state.foundBooks[i].authors); 
-    	}
+    	//console.log(this.state.foundBooks); 
+    	//for (let i = 0; i<this.state.foundBooks.length; i++){
+    	//	console.log(i); 
+    	//	console.log(this.state.foundBooks[i].authors); 
+    	//}
     
     return ( 
 

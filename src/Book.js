@@ -9,9 +9,21 @@ class Book extends React.Component {
     this.props.updateBookShelf(this.props.bookData.id, e.target.value); 
   }
 
+  getFormattedAuthors=()=>{
+    //turns our not all books have Authors property, so attempt to format it would cause an error. 
+    //This function will take care of this and return either empty string or list of authors as  a string
+    if(this.props.bookData.hasOwnProperty('authors')){
+      return this.props.bookData.authors.join(' '); 
+    }else{
+      return ''; 
+    }
+
+  }
+
   render() {
   	//console.log("book component"); 
-    //console.log(this.props);
+    //console.log(this.props.bookData);
+    //turns out not all books have aut
     return(
 
         <div className="book">
@@ -34,7 +46,7 @@ class Book extends React.Component {
                             </div>
                           </div>
                           <div className="book-title">{this.props.bookData.title}</div>
-                          <div className="book-authors">{this.props.bookData.authors.join(' ')}</div>
+                          <div className="book-authors">{this.getFormattedAuthors()}</div>
           </div>
       )
   }
