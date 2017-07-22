@@ -30,6 +30,15 @@ class Book extends React.Component {
     }
   }
 
+  getBackgroundImage=()=>{
+    //Same as with the Authors, there can be an issue with imageLinks 
+    if ((this.props.bookData.hasOwnProperty('imageLinks') &&  this.props.bookData.imageLinks.hasOwnProperty('thumbnail'))){
+          return `url(${this.props.bookData.imageLinks.thumbnail})`;
+    }else{
+      return ""; 
+    }
+  }
+
   render() {
   	//console.log("book component"); 
     //console.log(this.props.bookData);
@@ -41,8 +50,8 @@ class Book extends React.Component {
                           
                             <div className="book-cover" 
                             	style={{ width: 128, 
-                            			 height: 193 , 
-                            		     backgroundImage:`url(${this.props.bookData.imageLinks.thumbnail})`}}>
+                            			 height: 193, 
+                            		     backgroundImage: this.getBackgroundImage()}} >
                             </div>
 
                             <div className="book-shelf-changer">
