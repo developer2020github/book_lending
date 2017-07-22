@@ -11,7 +11,6 @@
 //========================================================================================
 
 import React from 'react'
-import * as BooksAPI from './BooksAPI'
 import './App.css'
 import * as Constants from './Constants'
 
@@ -47,7 +46,7 @@ class Book extends React.Component {
                             </div>
 
                             <div className="book-shelf-changer">
-                              <select onChange = {this.shelfChangeHandler.bind(this)} value={this.props.bookData.shelf}>
+                              <select onChange={this.shelfChangeHandler.bind(this)} value={this.props.bookData.shelf}>
                                 <option value="none" disabled>Move to...</option>
                                 <option value={Constants.SHELVES.CURRENTLY_READING}>{Constants.SHELF_NAMES[Constants.SHELVES.CURRENTLY_READING]}</option>
                                 <option value={Constants.SHELVES.WANT_TO_READ}>{Constants.SHELF_NAMES[Constants.SHELVES.WANT_TO_READ]}</option>

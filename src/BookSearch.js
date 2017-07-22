@@ -1,3 +1,14 @@
+//========================================================
+//My reads: book tracking application 
+//2017
+//Author:  developer2020 
+//e-mail:  dev276236@gmail.com
+//========================================================
+
+//========================================================================================
+//This module handles the search page that allows to search for new books and 
+//add them to the library. There is a search bar and a list of found books. 
+//========================================================================================
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import * as Constants from './Constants'
@@ -9,7 +20,6 @@ import Book from './Book'
 import BookShelf from './BookShelf'
 
 import * as BooksApiTest from './BooksApiTest'
-
 
 
 class BookSearch extends React.Component {
@@ -75,9 +85,9 @@ class BookSearch extends React.Component {
 	    	   <div>
 
 	                <BookShelf key="searchResults" 
-	                 books = {this.state.foundBooks} 
-	                 shelfName ="Search Results"
-	                 updateBookShelf = {this.updateBookShelf}
+	                 books={this.state.foundBooks} 
+	                 shelfName="Search Results"
+	                 updateBookShelf={this.updateBookShelf}
 	             />
              </div>
              </div>
