@@ -17,7 +17,7 @@ import * as Constants from './Constants'
 class Book extends React.Component {
 
   shelfChangeHandler(e){
-    this.props.updateBookShelf(this.props.bookData.id, e.target.value); 
+    this.props.updateBookShelf(this.props.bookData, e.target.value); 
   }
 
   getFormattedAuthors=()=>{

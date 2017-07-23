@@ -53,7 +53,7 @@ class BookSearch extends React.Component {
       }
     }
 
-	updateBookShelf = (bookID, newShelf)=>{}
+	//updateBookShelf = (bookID, newShelf)=>{}
 
     render() {
     	//console.log(this.state.foundBooks); 
@@ -87,7 +87,7 @@ class BookSearch extends React.Component {
 	                <BookShelf key="searchResults" 
 	                 books={this.state.foundBooks} 
 	                 shelfName="Search Results"
-	                 updateBookShelf={this.updateBookShelf}
+	                 updateBookShelf={this.props.updateBookShelf}
 	             />
              </div>
              </div>

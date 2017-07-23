@@ -52,36 +52,77 @@ componentDidMount(){
                 books: allBooks
             }))}
 
+
 closeSearch  = () => this.setState({ showSearchPage: false }); 
 
+isBookInLibrary(book){
+    for (const b of this.state.books){
+        if (b.id===book.id){
+            return true; 
+        }
+    }
 
-updateBookShelf = (bookID, newShelf)=>{
+    return false; 
+}
 
-     function updateBook(book){
-          if (book.id===bookID){
-            if (Utils.isValidShelf(newShelf)){
-              book.shelf = newShelf; 
-              BooksAPI.update({id: bookID}, newShelf); 
-             }
-          }
-          return book; 
-      }
 
-      function updateState(oldState){
-        
-         return {books: oldState.books.map(updateBook)} 
-      }
+updateBookShelf = (bookToUpdate, newShelf)=>{
+     if (!Utils.isValidShelf(newShelf)){
+        return; 
+     }
 
-     this.setState(updateState);    
+     bookToUpdate.shelf = newShelf; 
+
+     BooksAPI.update({id: bookToUpdate.id}, newShelf); 
+
+     if (this.isBookInLibrary(bookToUpdate)){
+        //if it is already in the library - we just need to ensure shelf matches new one
+
+                 //console.log("updateBookShelf"); 
+                 function updateBook(book){
+                      if (book.id===bookToUpdate.id){
+                    
+                          book.shelf = newShelf; 
+                          //console.log("updating shelf"); 
+                          //console.log(book.title); 
+                          //console.log(newShelf); 
+                      }
+                      return book; 
+                  }
+
+                  function updateState(oldState){
+                    
+                     return {books: oldState.books.map(updateBook)} 
+                  }
+
+                 this.setState(updateState);    
+    }else{
+        //if books is not yet on the shelf, we just need to add it
+          function updateStateAdd(oldState){
+
+                     let newBooksState = oldState.books;
+                     newBooksState.push(bookToUpdate); 
+
+                     return {books: newBooksState} 
+        }
+
+        this.setState(updateStateAdd); 
+
+    }
+
   }
 
-  render() {
 
+
+  render() {
+    console.log("app.render");
+    console.log(typeof(this.state.books)); 
+    console.log(this.state.books); 
 
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <BookSearch closeSearch={this.closeSearch}/>
+          <BookSearch closeSearch={this.closeSearch} updateBookShelf={this.updateBookShelf}/>
     
         ) : (
           <div className="list-books">
