@@ -41,7 +41,6 @@ class BooksApp extends React.Component {
     //this.state.books = BooksApiTest.createBooksList(); //this can be used for local testing
   }
   state = {
-
     books: []
   }
 
@@ -69,28 +68,22 @@ updateBookShelf = (bookToUpdate, newShelf)=>{
      }
 
      bookToUpdate.shelf = newShelf; 
+     console.log("updating shelf"); 
+     console.log(newShelf);
 
      BooksAPI.update({id: bookToUpdate.id}, newShelf); 
 
      if (this.isBookInLibrary(bookToUpdate)){
         //if it is already in the library - we just need to ensure shelf matches new one
-
-                 //console.log("updateBookShelf"); 
-                 function updateBook(book){
-                      if (book.id===bookToUpdate.id){
-                    
-                          book.shelf = newShelf; 
-                          //console.log("updating shelf"); 
-                          //console.log(book.title); 
-                          //console.log(newShelf); 
-                      }
-                      return book; 
-                  }
-
-                  function updateState(oldState){
-                    
-                     return {books: oldState.books.map(updateBook)} 
-                  }
+        function updateState(oldState){
+            return {books: oldState.books.map((book)=>{
+                                              if (book.id===bookToUpdate.id){
+                                                  book.shelf = newShelf;
+                                              }
+                                              return book; 
+                                         }
+                                        )} 
+                    }
 
                  this.setState(updateState);    
     }else{
