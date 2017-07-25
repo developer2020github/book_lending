@@ -25,11 +25,6 @@ import * as BooksApiTest from './BooksApiTest'
 
 class BookSearch extends React.Component {
 
-	constructor(){
-     super(); 
-     this.state.foundBooks = BooksApiTest.createBooksList(); 
-    }
-
 	state = {
 		foundBooks: [], 
 		query: ""
@@ -82,16 +77,7 @@ class BookSearch extends React.Component {
               <Link className="close-search" to='/'>Close</Link>
 
               <div className="search-books-input-wrapper">
-                {/* 
-                  NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                  You can find these search terms here:
-                  https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-                  
-                  However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                  you don't find a specific author or title. Every search is limited by search terms.
-                */}
                 <input type="text" placeholder="Search by title or author" onChange={this.handleInputQuery}/>
-                
               </div>
             </div>
           
@@ -100,7 +86,7 @@ class BookSearch extends React.Component {
 
 	                <BookShelf key="searchResults" 
 	                 books={this.state.foundBooks} 
-	                 shelfName="Search Results"
+	                 shelfName=""
 	                 updateBookShelf={this.props.updateBookShelf}
 	             />
              </div>
