@@ -61,6 +61,15 @@ isBookInLibrary(book){
     return false; 
 }
 
+getLibraryBookShelf = (book)=>{
+       for (const b of this.state.books){
+        if (b.id===book.id){
+            return b.shelf; 
+        }
+    }
+
+    return Constants.SHELVES.NONE; 
+}
 
 updateBookShelf = (bookToUpdate, newShelf)=>{
      if (!Utils.isValidShelf(newShelf)){
@@ -112,7 +121,7 @@ updateBookShelf = (bookToUpdate, newShelf)=>{
     return (
       <div className="app">
           <Route path = "/search" render ={()=>{
-            return <BookSearch updateBookShelf={this.updateBookShelf}/>
+            return <BookSearch updateBookShelf={this.updateBookShelf} getLibraryBookShelf={this.getLibraryBookShelf}/>
           }}
           />
 

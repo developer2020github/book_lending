@@ -43,13 +43,24 @@ class BookSearch extends React.Component {
 		this.searchForBooks(); 
 
 	}
+
+
+  syncWithLibrary = (foundBooks)=>{
+    //it appears that BooksAPI.update does not set state of books returned by search
+    //this function will patch for this - ensure library and search are in sync all the time
+     return foundBooks.map((book)=>{ 
+        book.shelf = this.props.getLibraryBookShelf(book); 
+        return book; 
+        }
+      )
+  }
     
     searchForBooks=()=>{
       if (this.state.query ==="") {
       	this.setState({foundBooks: []})
       }else{
       	    BooksAPI.search(this.state.query, 10).then(allBooks => this.setState({
-                foundBooks: allBooks
+                foundBooks: this.syncWithLibrary(allBooks)
             }))
       }
     }
