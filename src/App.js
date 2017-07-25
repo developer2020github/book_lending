@@ -146,13 +146,10 @@ updateBookShelf = (bookToUpdate, newShelf)=>{
 
                            </div>
                         </div>
-
-                        <Link
-                             to='/search'>
-                            <div className="open-search">
-                              <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
-                            </div>
-                        </Link>
+                        <div className="open-search">
+                        <Link className="open-search-link"
+                             to='/search'>Add book</Link>
+                        </div>
 
                     </div>
                     
