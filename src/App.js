@@ -42,9 +42,7 @@ class BooksApp extends React.Component {
   }
   state = {
 
-    books: [], 
-  
-    showSearchPage: false
+    books: []
   }
 
 
@@ -53,8 +51,6 @@ componentDidMount(){
                 books: allBooks
             }))}
 
-
-closeSearch  = () => this.setState({ showSearchPage: false }); 
 
 isBookInLibrary(book){
     for (const b of this.state.books){
@@ -123,7 +119,7 @@ updateBookShelf = (bookToUpdate, newShelf)=>{
     return (
       <div className="app">
           <Route path = "/search" render ={()=>{
-            return <BookSearch closeSearch={this.closeSearch} updateBookShelf={this.updateBookShelf}/>
+            return <BookSearch updateBookShelf={this.updateBookShelf}/>
           }}
           />
 
@@ -147,11 +143,10 @@ updateBookShelf = (bookToUpdate, newShelf)=>{
                            </div>
                         </div>
                         <div className="open-search">
-                        <Link className="open-search-link"
-                             to='/search'>Add book</Link>
+                            <Link className="open-search-link" to='/search'>Add book</Link>
                         </div>
 
-                    </div>
+               </div>
                     
                 }}
             />
