@@ -10,6 +10,7 @@
 //add them to the library. There is a search bar and a list of found books. 
 //========================================================================================
 import React from 'react'
+import { Link, Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import * as Constants from './Constants'
 import * as Utils from './Utils'
@@ -66,7 +67,9 @@ class BookSearch extends React.Component {
 
       <div className="search-books">
             <div className="search-books-bar">
-              <a className="close-search" onClick={this.props.closeSearch}>Close</a>
+
+              <Link className="close-search" to='/'>Close</Link>
+
               <div className="search-books-input-wrapper">
                 {/* 
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.
