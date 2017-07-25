@@ -11,6 +11,7 @@
 //========================================================================================
 
 import React from 'react'
+import { Link, Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import * as Constants from './Constants'
 import * as Utils from './Utils'
@@ -121,37 +122,44 @@ updateBookShelf = (bookToUpdate, newShelf)=>{
 
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
-          <BookSearch closeSearch={this.closeSearch} updateBookShelf={this.updateBookShelf}/>
-    
-        ) : (
-          <div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
-            </div>
+          <Route path = "/search" render ={()=>{
+            return <BookSearch closeSearch={this.closeSearch} updateBookShelf={this.updateBookShelf}/>
+          }}
+          />
 
-            <div className="list-books-content">
-              <div>
+           <Route exact path = "/" render ={()=>{
+                    return <div className="list-books">
+                        <div className="list-books-title">
+                          <h1>MyReads</h1>
+                        </div>
 
-                {this.validShelves.map(
-                        (shelf)=>{
-                        return <BookShelf key={shelf} 
-                        books={this.state.books.filter( book=> book.shelf===shelf)} 
-                        shelfName={Constants.SHELF_NAMES[shelf]}
-                        updateBookShelf={this.updateBookShelf}/>}
-               )}
+                        <div className="list-books-content">
+                            <div>
 
-              </div>
+                            {this.validShelves.map(
+                                    (shelf)=>{
+                                    return <BookShelf key={shelf} 
+                                    books={this.state.books.filter( book=> book.shelf===shelf)} 
+                                    shelfName={Constants.SHELF_NAMES[shelf]}
+                                    updateBookShelf={this.updateBookShelf}/>}
+                                    )}
 
-            </div>
+                           </div>
+                        </div>
 
-            <div className="open-search">
-              <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
-            </div>
-          </div>
-        )}
-      </div>
-    )
+                        <Link
+                             to='/search'>
+                            <div className="open-search">
+                              <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+                            </div>
+                        </Link>
+
+                    </div>
+                    
+                }}
+            />
+     
+      </div>)
   }
 }
 
