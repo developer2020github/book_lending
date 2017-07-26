@@ -34,9 +34,9 @@ let bookObjectExample  =
    * Use standard input and output, redirection, and pipelines 
    * Edit files with Vi, the world’s most popular text editor 
    * Write shell scripts to automate common or boring tasks 
-   * Slice and dice text files with cut, paste, grep, patch, and sed Once you overcome your initial \"shell shock,\" 
+   * Slice and dice text files with cut, paste, grep, patch, and sed Once you overcome your initial "shell shock," 
    you'll find that the command line is a natural and expressive way to communicate with your computer. 
-   Just don't be surprised if your mouse starts to gather dust. A featured resource in the Linux Foundation's \"Evolution of a SysAdmin\""`, 
+   Just don't be surprised if your mouse starts to gather dust. A featured resource in the Linux Foundation's "Evolution of a SysAdmin`, 
    industryIdentifiers: [{ type: "ISBN_13", identifier: "9781593273897" }, { type: "ISBN_10", identifier: "1593273894" }], 
    readingModes: { text: true, image: false }, 
    pageCount: 480, 

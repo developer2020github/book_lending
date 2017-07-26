@@ -21,15 +21,6 @@ import './App.css'
 import BookShelf from './BookShelf'
 import BookSearch from './BookSearch'
 
-//import * as BooksApiTest from './BooksApiTest'
-
-  /**
-     * TODO: Instead of using  state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-    */
-
 
 class BooksApp extends React.Component {
   constructor(){
@@ -37,9 +28,9 @@ class BooksApp extends React.Component {
     this.validShelves = [Constants.SHELVES.CURRENTLY_READING, 
                          Constants.SHELVES.WANT_TO_READ, 
                          Constants.SHELVES.READ]; 
-
-    //this.state.books = BooksApiTest.createBooksList(); //this can be used for local testing
   }
+
+
   state = {
     books: []
   }
@@ -76,13 +67,11 @@ updateBookShelf = (bookToUpdate, newShelf)=>{
         return; 
      }
 
-     bookToUpdate.shelf = newShelf; 
-     console.log("updating shelf"); 
-     console.log(newShelf);
+    bookToUpdate.shelf = newShelf; 
 
-     BooksAPI.update({id: bookToUpdate.id}, newShelf); 
+    BooksAPI.update({id: bookToUpdate.id}, newShelf); 
 
-     if (this.isBookInLibrary(bookToUpdate)){
+    if (this.isBookInLibrary(bookToUpdate)){
         //if it is already in the library - we just need to ensure shelf matches new one
         function updateState(oldState){
             return {books: oldState.books.map((book)=>{
@@ -114,18 +103,15 @@ updateBookShelf = (bookToUpdate, newShelf)=>{
 
 
   render() {
-    console.log("app.render");
-    console.log(typeof(this.state.books)); 
-    console.log(this.state.books); 
 
     return (
       <div className="app">
-          <Route path = "/search" render ={()=>{
+          <Route path="/search" render={()=>{
             return <BookSearch updateBookShelf={this.updateBookShelf} getLibraryBookShelf={this.getLibraryBookShelf}/>
           }}
           />
 
-           <Route exact path = "/" render ={()=>{
+           <Route exact path="/" render={()=>{
                     return <div className="list-books">
                         <div className="list-books-title">
                           <h1>MyReads</h1>

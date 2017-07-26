@@ -10,17 +10,10 @@
 //add them to the library. There is a search bar and a list of found books. 
 //========================================================================================
 import React from 'react'
-import { Link, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
-import * as Constants from './Constants'
-import * as Utils from './Utils'
-
 import './App.css'
-
-import Book from './Book'
 import BookShelf from './BookShelf'
-
-import * as BooksApiTest from './BooksApiTest'
 
 
 class BookSearch extends React.Component {
@@ -31,19 +24,15 @@ class BookSearch extends React.Component {
 	}
 
 	handleInputQuery = (e)=>{
-		//console.log("query input event"); 
-		//console.log(e); 
-		//console.log(e.target.value); 
 		this.setState({query: e.target.value.trim()}); 
 		this.searchForBooks(); 
-
 	}
 
 
-  syncWithLibrary = (foundBooks)=>{
+    syncWithLibrary = (foundBooks)=>{
     //it appears that BooksAPI.update does not set state of books returned by search
     //this function will patch for this - ensure library and search are in sync all the time
-     return foundBooks.map((book)=>{ 
+    return foundBooks.map((book)=>{ 
         book.shelf = this.props.getLibraryBookShelf(book); 
         return book; 
         }
@@ -60,14 +49,8 @@ class BookSearch extends React.Component {
       }
     }
 
-	//updateBookShelf = (bookID, newShelf)=>{}
 
     render() {
-    	//console.log(this.state.foundBooks); 
-    	//for (let i = 0; i<this.state.foundBooks.length; i++){
-    	//	console.log(i); 
-    	//	console.log(this.state.foundBooks[i].authors); 
-    	//}
     
     return ( 
 

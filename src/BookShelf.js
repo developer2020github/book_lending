@@ -6,15 +6,12 @@
 //========================================================
 
 //========================================================================================
-//This module represents a book shelf - a set of books that belong to same category
+//This component represents a book shelf - a set of books that belong to same category.
 //========================================================================================
 
 import React from 'react'
-import * as BooksAPI from './BooksAPI'
 import './App.css'
-
 import Book from './Book'
-import { bookObjectExample } from './BooksApiTest'
 
 class BookShelf extends React.Component{
 
@@ -28,7 +25,7 @@ class BookShelf extends React.Component{
                     <ol className="books-grid">
 
                         {this.props.books.map((book, i)=> {
-                        return <li key={book.id}> <Book bookData = {book} updateBookShelf = {this.props.updateBookShelf}/> </li>; 
+                        return <li key={book.id}> <Book bookData={book} updateBookShelf={this.props.updateBookShelf}/> </li>; 
                       })}
 
 
