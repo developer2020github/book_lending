@@ -18,28 +18,33 @@ import BookShelf from './BookShelf'
 
 class BookSearch extends React.Component {
 
-	state = {
+state = {
 		foundBooks: [], 
 		query: ""
 	}
 
-	handleInputQuery = (e)=>{
+
+//callback for search request from GUI
+handleInputQuery = (e)=>{
 		this.setState({query: e.target.value.trim()}); 
 		this.searchForBooks(); 
-	}
+}
 
 
-    syncWithLibrary = (foundBooks)=>{
-    //it appears that BooksAPI.update does not set state of books returned by search
-    //this function will patch for this - ensure library and search are in sync all the time
+//it appears that BooksAPI.update does not set state of books returned by search
+//this function will patch for this - ensure library and search are in sync all the time
+syncWithLibrary = (foundBooks)=>{
+
     return foundBooks.map((book)=>{ 
         book.shelf = this.props.getLibraryBookShelf(book); 
         return book; 
         }
       )
   }
+
     
-    searchForBooks=()=>{
+//calls book search API and handles state updates 
+searchForBooks=()=>{
       if (this.state.query ==="") {
       	this.setState({foundBooks: []})
       }else{
@@ -47,10 +52,10 @@ class BookSearch extends React.Component {
                 foundBooks: this.syncWithLibrary(allBooks)
             }))
       }
-    }
+}
 
 
-    render() {
+render() {
     
     return ( 
 
@@ -62,18 +67,19 @@ class BookSearch extends React.Component {
               <div className="search-books-input-wrapper">
                 <input type="text" placeholder="Search by title or author" onChange={this.handleInputQuery}/>
               </div>
+
             </div>
           
-             <div className="search-books-results">
-	    	   <div>
+            <div className="search-books-results">
+	    	    <div>
 
 	                <BookShelf key="searchResults" 
 	                 books={this.state.foundBooks} 
 	                 shelfName=""
 	                 updateBookShelf={this.props.updateBookShelf}
-	             />
-             </div>
-             </div>
+	                />
+                </div>
+            </div>
      
           </div>
     	)
