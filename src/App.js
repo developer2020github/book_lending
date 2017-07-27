@@ -15,33 +15,36 @@ import { Link, Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import * as Constants from './Constants'
 import * as Utils from './Utils'
-
 import './App.css'
-
 import BookShelf from './BookShelf'
 import BookSearch from './BookSearch'
 
 
 class BooksApp extends React.Component {
-  constructor(){
+
+constructor(){
     super(); 
+    //list of shelves present in the library; 
+    //any other value is not allowed
     this.validShelves = [Constants.SHELVES.CURRENTLY_READING, 
                          Constants.SHELVES.WANT_TO_READ, 
                          Constants.SHELVES.READ]; 
   }
-
 
   state = {
     books: []
   }
 
 
+//this function gets the current list of books in the library 
+//and maps it to internal state of the component
 componentDidMount(){
     BooksAPI.getAll().then(allBooks => this.setState({
                 books: allBooks
             }))}
 
 
+//returns true if book with matching ID is already in the library
 isBookInLibrary(book){
     for (const b of this.state.books){
         if (b.id===book.id){
@@ -52,6 +55,9 @@ isBookInLibrary(book){
     return false; 
 }
 
+
+//returns shelf of the book if it is in the library and 
+//"none" otherwise
 getLibraryBookShelf = (book)=>{
        for (const b of this.state.books){
         if (b.id===book.id){
@@ -62,6 +68,10 @@ getLibraryBookShelf = (book)=>{
     return Constants.SHELVES.NONE; 
 }
 
+
+//updates state of the book on request from UI; 
+//if book is already in the library - changes shelf.
+//If not - book gets added to the library
 updateBookShelf = (bookToUpdate, newShelf)=>{
      if (!Utils.isValidShelf(newShelf)){
         return; 
@@ -80,8 +90,7 @@ updateBookShelf = (bookToUpdate, newShelf)=>{
                                               }
                                               return book; 
                                          }
-                                        )} 
-                    }
+                                        )}}
 
                  this.setState(updateState);    
     }else{
@@ -95,51 +104,49 @@ updateBookShelf = (bookToUpdate, newShelf)=>{
         }
 
         this.setState(updateStateAdd); 
-
     }
 
   }
 
 
-
-  render() {
+render() {
 
     return (
-      <div className="app">
-          <Route path="/search" render={()=>{
-            return <BookSearch updateBookShelf={this.updateBookShelf} getLibraryBookShelf={this.getLibraryBookShelf}/>
-          }}
-          />
+        <div className="app">
+            <Route path="/search" render={()=>{
+                return <BookSearch updateBookShelf={this.updateBookShelf} getLibraryBookShelf={this.getLibraryBookShelf}/>
+                }}
+            />
 
-           <Route exact path="/" render={()=>{
-                    return <div className="list-books">
-                        <div className="list-books-title">
-                          <h1>MyReads</h1>
+            <Route exact path="/" render={()=>{
+                return  <div className="list-books">
+                            <div className="list-books-title">
+                              <h1>MyReads</h1>
+                            </div>
+
+                            <div className="list-books-content">
+                                <div>
+
+                                {this.validShelves.map(
+                                        (shelf)=>{
+                                        return <BookShelf key={shelf} 
+                                        books={this.state.books.filter( book=> book.shelf===shelf)} 
+                                        shelfName={Constants.SHELF_NAMES[shelf]}
+                                        updateBookShelf={this.updateBookShelf}/>}
+                                        )}
+
+                                </div>
+                            </div>
+                            <div className="open-search">
+                                <Link className="open-search-link" to='/search'>Add book</Link>
+                            </div>
+
                         </div>
-
-                        <div className="list-books-content">
-                            <div>
-
-                            {this.validShelves.map(
-                                    (shelf)=>{
-                                    return <BookShelf key={shelf} 
-                                    books={this.state.books.filter( book=> book.shelf===shelf)} 
-                                    shelfName={Constants.SHELF_NAMES[shelf]}
-                                    updateBookShelf={this.updateBookShelf}/>}
-                                    )}
-
-                           </div>
-                        </div>
-                        <div className="open-search">
-                            <Link className="open-search-link" to='/search'>Add book</Link>
-                        </div>
-
-               </div>
                     
                 }}
             />
      
-      </div>)
+        </div>)
   }
 }
 

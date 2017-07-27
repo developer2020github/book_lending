@@ -1,7 +1,9 @@
 ## Project title
-###### [My reads: a book tracking application](http://developer2020github.github.io/health_tracker/dist/ "link to project page")
-Author: developer2020 (<dev276236@gmail.com> )
+###### My reads: a book tracking application
+
 2017
+Author:  developer2020 
+e-mail:  dev276236@gmail.com
 
 ## Project overview
 Personal project:
@@ -10,7 +12,8 @@ want to read and read)  and provides a search page to search for new books and a
 The project is a part of Udacity React nano-degree and was built in order 
 to study React. The initial project "sceleton" (static HTML mockup of the main page, CSS styling 
 and back end API with some sample books) was provided by Udacity. All the functionality was 
-implemented by developer2020.
+implemented by developer2020. Modules coded by developer2020
+are identified in comments in the header of the module. 
 
 
 ## Built with (libraries/technologies/APIs used)
