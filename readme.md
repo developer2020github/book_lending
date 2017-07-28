@@ -25,9 +25,9 @@ are identified in comments in the header of the module.
 2. Download the application. 
 3. Install all the Node modules by navigating to application root folder in the command line and 
 running command 
-npm install 
+`npm install` 
 4. Run command 
-npm start 
+`npm start` 
 
 
 
