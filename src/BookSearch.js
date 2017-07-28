@@ -26,8 +26,11 @@ state = {
 
 //callback for search request from GUI
 handleInputQuery = (e)=>{
-		this.setState({query: e.target.value.trim()}); 
-		this.searchForBooks(); 
+    console.log("handle input query");
+    console.log(e.target.value); 
+		this.setState({query: e.target.value.trim()}, 
+                       ()=>{this.searchForBooks();}
+                      ); 
 }
 
 
@@ -45,6 +48,9 @@ syncWithLibrary = (foundBooks)=>{
     
 //calls book search API and handles state updates 
 searchForBooks=()=>{
+      console.log("query from search for books"); 
+      console.log(this.state.query); 
+
       if (this.state.query ==="") {
       	this.setState({foundBooks: []})
       }else{
