@@ -11,12 +11,12 @@
 //========================================================================================
 
 import React from 'react'
-import { Link, Route, Switch} from 'react-router-dom'
+import { Route, Switch} from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import * as Constants from './Constants'
 import * as Utils from './Utils'
 import './App.css'
-import BookShelf from './BookShelf'
+import BookShelves from './BookShelves'
 import BookSearch from './BookSearch'
 import DefaultPage from './DefaultPage'
 
@@ -33,16 +33,26 @@ constructor(){
   }
 
   state = {
-    books: []
+    books: [], 
+    libraryDataAvailable: false
   }
 
 
 //this function gets the current list of books in the library 
 //and maps it to internal state of the component
 componentDidMount(){
-    BooksAPI.getAll().then(allBooks => this.setState({
-                books: allBooks
-            }))}
+
+    //do not render shelves till data is available 
+    this.setState({libraryDataAvailable: false}); 
+
+    BooksAPI.getAll().then(
+                allBooks => {
+                this.setState({
+                books: allBooks, 
+                libraryDataAvailable: true
+            })})
+
+}
 
 
 //returns true if book with matching ID is already in the library
@@ -114,6 +124,7 @@ render() {
 
     return (
         <div className="app">
+            <h1></h1>
             <Switch>
                 <Route path="/search" render={()=>{
                     return <BookSearch updateBookShelf={this.updateBookShelf} getLibraryBookShelf={this.getLibraryBookShelf}/>
@@ -121,30 +132,7 @@ render() {
                 />
 
                 <Route exact path="/" render={()=>{
-                    return  <div className="list-books">
-                                <div className="list-books-title">
-                                  <h1>MyReads</h1>
-                                </div>
-
-                                <div className="list-books-content">
-                                    <div>
-
-                                    {this.validShelves.map(
-                                            (shelf)=>{
-                                            return <BookShelf key={shelf} 
-                                            books={this.state.books.filter( book=> book.shelf===shelf)} 
-                                            shelfName={Constants.SHELF_NAMES[shelf]}
-                                            updateBookShelf={this.updateBookShelf}/>}
-                                            )}
-
-                                    </div>
-                                </div>
-                                <div className="open-search">
-                                    <Link className="open-search-link" to='/search'>Add book</Link>
-                                </div>
-                               
-                            </div>
-                        
+                        return<BookShelves updateBookShelf={this.updateBookShelf} books={this.state.books} libraryDataAvailable={this.state.libraryDataAvailable} />
                     }}
                 />
                 <Route component={DefaultPage}/>
