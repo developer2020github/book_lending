@@ -26,8 +26,11 @@ state = {
 
 //callback for search request from GUI
 handleInputQuery = (e)=>{
-    console.log("handle input query");
-    console.log(e.target.value); 
+        //searchForBooks has to be in a callback because 
+        //setState is not synchronous; so if searchForBooks is 
+        //called right after it, query will not be up to date. 
+        //In call back, it is updated. Ref.: 
+        //https://medium.learnreact.com/setstate-is-asynchronous-52ead919a3f0
 		this.setState({query: e.target.value.trim()}, 
                        ()=>{this.searchForBooks();}
                       ); 
@@ -48,9 +51,6 @@ syncWithLibrary = (foundBooks)=>{
     
 //calls book search API and handles state updates 
 searchForBooks=()=>{
-      console.log("query from search for books"); 
-      console.log(this.state.query); 
-
       if (this.state.query ==="") {
       	this.setState({foundBooks: []})
       }else{
