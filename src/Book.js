@@ -26,7 +26,7 @@ class Book extends React.Component {
 getFormattedAuthors=()=>{
 
     if(this.props.bookData.hasOwnProperty('authors')){
-      return this.props.bookData.authors.join(' '); 
+      return this.props.bookData.authors.join(', '); 
     }else{
       return ''; 
     }
