@@ -13,19 +13,18 @@ import React from 'react'
 import './App.css'
 import Book from './Book'
 
-class BookShelf extends React.Component{
 
-render(){
-    return (
+const  BookShelf = (props)=>{
+     return (
 
                 <div className="bookshelf">
-                  <h2 className="bookshelf-title">{this.props.shelfName}</h2>
+                  <h2 className="bookshelf-title">{props.shelfName}</h2>
                   <div className="bookshelf-books">
                    
                     <ol className="books-grid">
 
-                        {this.props.books.map((book, i)=> {
-                        return <li key={book.id}> <Book bookData={book} updateBookShelf={this.props.updateBookShelf}/> </li>; 
+                        {props.books.map((book, i)=> {
+                        return <li key={book.id}> <Book bookData={book} updateBookShelf={props.updateBookShelf}/> </li>; 
                       })}
 
 
@@ -33,8 +32,8 @@ render(){
 
                   </div>
                 </div>
-      )
-  }
-}
+            )
+
+} 
 
 export default BookShelf; 
