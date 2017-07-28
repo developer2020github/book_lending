@@ -54,9 +54,13 @@ searchForBooks=()=>{
       if (this.state.query ==="") {
       	this.setState({foundBooks: []})
       }else{
-      	    BooksAPI.search(this.state.query, 10).then(allBooks => this.setState({
-                foundBooks: this.syncWithLibrary(allBooks)
-            }))
+             BooksAPI.search(this.state.query, 10)
+            .then(
+                    allBooks => this.setState({
+                                foundBooks: this.syncWithLibrary(allBooks)
+                            })
+                )
+            .catch( err=>{this.setState({foundBooks: []})} )
       }
 }
 
