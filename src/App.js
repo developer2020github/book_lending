@@ -11,13 +11,14 @@
 //========================================================================================
 
 import React from 'react'
-import { Link, Route } from 'react-router-dom'
+import { Link, Route, Switch} from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import * as Constants from './Constants'
 import * as Utils from './Utils'
 import './App.css'
 import BookShelf from './BookShelf'
 import BookSearch from './BookSearch'
+import DefaultPage from './DefaultPage'
 
 
 class BooksApp extends React.Component {
@@ -113,39 +114,42 @@ render() {
 
     return (
         <div className="app">
-            <Route path="/search" render={()=>{
-                return <BookSearch updateBookShelf={this.updateBookShelf} getLibraryBookShelf={this.getLibraryBookShelf}/>
-                }}
-            />
+            <Switch>
+                <Route path="/search" render={()=>{
+                    return <BookSearch updateBookShelf={this.updateBookShelf} getLibraryBookShelf={this.getLibraryBookShelf}/>
+                    }}
+                />
 
-            <Route exact path="/" render={()=>{
-                return  <div className="list-books">
-                            <div className="list-books-title">
-                              <h1>MyReads</h1>
-                            </div>
-
-                            <div className="list-books-content">
-                                <div>
-
-                                {this.validShelves.map(
-                                        (shelf)=>{
-                                        return <BookShelf key={shelf} 
-                                        books={this.state.books.filter( book=> book.shelf===shelf)} 
-                                        shelfName={Constants.SHELF_NAMES[shelf]}
-                                        updateBookShelf={this.updateBookShelf}/>}
-                                        )}
-
+                <Route exact path="/" render={()=>{
+                    return  <div className="list-books">
+                                <div className="list-books-title">
+                                  <h1>MyReads</h1>
                                 </div>
-                            </div>
-                            <div className="open-search">
-                                <Link className="open-search-link" to='/search'>Add book</Link>
-                            </div>
 
-                        </div>
-                    
-                }}
-            />
-     
+                                <div className="list-books-content">
+                                    <div>
+
+                                    {this.validShelves.map(
+                                            (shelf)=>{
+                                            return <BookShelf key={shelf} 
+                                            books={this.state.books.filter( book=> book.shelf===shelf)} 
+                                            shelfName={Constants.SHELF_NAMES[shelf]}
+                                            updateBookShelf={this.updateBookShelf}/>}
+                                            )}
+
+                                    </div>
+                                </div>
+                                <div className="open-search">
+                                    <Link className="open-search-link" to='/search'>Add book</Link>
+                                </div>
+                               
+                            </div>
+                        
+                    }}
+                />
+                <Route component={DefaultPage}/>
+            </Switch>
+           
         </div>)
   }
 }
